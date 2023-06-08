@@ -12,10 +12,9 @@ const PokeList = () => {
           <PokeCard
             name={item.name}
             imgUrl={item.sprites.front_default}
-            types={['poison']}
+            types={item.types.map(type => type.type.name)}
           />
         )}
-        keyExtractor={item => item.id}
       />
     </SafeAreaView>
   );

@@ -1,40 +1,73 @@
-import {View, Text, StyleSheet, ViewStyle} from 'react-native';
 import React from 'react';
-import PokePicture from './PokePicture';
+
+import {View, StyleSheet, ViewStyle, ImageStyle, Image} from 'react-native';
+import PokeType from './PokeType';
+import BoldText from './Text/BoldText';
+
+import {
+  getColorByType,
+  upperCaseFirstLetter,
+} from '../helpers/PokemonListHelper';
+import {PokemonType} from '../types/types';
+import Card from './Card';
 
 type Props = {
   name: string;
-  types: string[];
+  types: PokemonType[];
   imgUrl: string;
 };
 
 const PokeCard = ({name, types, imgUrl}: Props) => {
   return (
-    <View style={styles.container}>
+    <Card
+      viewStyle={[
+        styles.container,
+        {backgroundColor: getColorByType(types[0])},
+      ]}>
       <View style={styles.metadata}>
-        <Text>{name}</Text>
-        <Text>{types}</Text>
+        <BoldText text={upperCaseFirstLetter(name)} />
+        <View style={styles.types}>
+          {types.map(type => (
+            <PokeType key={type} type={type} />
+          ))}
+        </View>
       </View>
 
-      <PokePicture imgUrl={imgUrl} />
-    </View>
+      <Image
+        style={styles.image}
+        source={{
+          uri: imgUrl,
+        }}
+      />
+    </Card>
   );
 };
 
 interface IStyles {
   container: ViewStyle;
   metadata: ViewStyle;
+  image: ImageStyle;
+  types: ViewStyle;
 }
 
 const styles = StyleSheet.create<IStyles>({
   container: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: 'green',
-    marginHorizontal: 4,
-    marginVertical: 4,
-    borderRadius: 4,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    marginHorizontal: 10,
+    marginVertical: 5,
     height: 100,
+  },
+  image: {
+    height: 100,
+    width: 100,
+  },
+  types: {
+    flexDirection: 'row',
+    marginVertical: 10,
   },
   metadata: {
     flexDirection: 'column',
