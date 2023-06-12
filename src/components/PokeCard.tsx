@@ -7,7 +7,7 @@ import BoldText from './Text/BoldText';
 import {
   getColorByType,
   upperCaseFirstLetter,
-} from '../helpers/PokemonListHelper';
+} from '../helpers/pokemonListHelper';
 import {PokemonType} from '../types/types';
 import Card from './Card';
 
@@ -28,7 +28,7 @@ const PokeCard = ({name, types, imgUrl}: Props) => {
         <BoldText text={upperCaseFirstLetter(name)} />
         <View style={styles.types}>
           {types.map(type => (
-            <PokeType key={type} type={type} />
+            <PokeType key={`${name}-${type}`} type={type} />
           ))}
         </View>
       </View>
@@ -57,7 +57,6 @@ const styles = StyleSheet.create<IStyles>({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
-    marginHorizontal: 10,
     marginVertical: 5,
     height: 100,
   },

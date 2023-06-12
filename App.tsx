@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-import PokeList from './src/components/PokeList';
+import PokedexScreen from './src/screens/PokedexScreen';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -8,7 +8,7 @@ function App(): JSX.Element {
   return (
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <PokeList />
+      <PokedexScreen />
     </SafeAreaView>
   );
 }

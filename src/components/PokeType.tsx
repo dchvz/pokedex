@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TextStyle, ViewStyle} from 'react-native';
 import {PokemonType} from '../types/types';
-import {getColorByType} from '../helpers/PokemonListHelper';
+import {getColorByType} from '../helpers/pokemonListHelper';
 import Card from './Card';
 
 type Props = {
