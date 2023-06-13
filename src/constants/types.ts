@@ -1,3 +1,5 @@
+import {COLORS} from './colors';
+
 export const enum POKEMON_TYPES {
   bug = 'bug',
   dark = 'dark',
@@ -20,22 +22,22 @@ export const enum POKEMON_TYPES {
 }
 
 export const COLOR_BY_TYPE = {
-  bug: '#A6B91A',
-  dark: '#705746',
-  dragon: '#6F35FC',
-  electric: '#F7D02C',
-  fairy: '#D685AD',
-  fire: '#EE8130',
-  fighting: '#C22E28',
-  flying: '#A98FF3',
-  ghost: '#735797',
-  grass: '#7AC74C',
-  ground: '#E2BF65',
-  ice: '#96D9D6',
-  normal: '#A8A77A',
-  poison: '#A33EA1',
-  psychic: '#F95587',
-  rock: '#B6A136',
-  steel: '#B7B7CE',
-  water: '#6390F0',
+  bug: COLORS.pistachioGreen,
+  dark: COLORS.tobaccoBrown,
+  dragon: COLORS.purplishBlue,
+  electric: COLORS.brightGold,
+  fairy: COLORS.dullPink,
+  fire: COLORS.cadmiumOrange,
+  fighting: COLORS.persianRead,
+  flying: COLORS.palePurple,
+  ghost: COLORS.mutedPurple,
+  grass: COLORS.appleGreen,
+  ground: COLORS.gingerBrown,
+  ice: COLORS.pearlAqua,
+  normal: COLORS.greenSmoke,
+  poison: COLORS.warmPurple,
+  psychic: COLORS.warmPink,
+  rock: COLORS.brass,
+  steel: COLORS.casper,
+  water: COLORS.softBlue,
 };
