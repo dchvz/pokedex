@@ -1,42 +1,54 @@
-import {View, StyleSheet, ViewStyle} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {View, StyleSheet, ViewStyle, ActivityIndicator} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 import PokeList from '../components/PokeList';
 
 import {Pokemon} from '../types/pokemon';
 import {fetchEnrichedPokemonList} from '../api/pokemonAPI';
 import {DEFAULT_LIMIT_BY_CALL} from '../constants/api';
+import {COLORS} from '../constants/colors';
 
 const PokedexScreen = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
+  const [loading, setLoading] = useState(false);
+  const loadMorePokemon = useRef(async () => {});
 
-  const loadMorePokemon = async (): Promise<void> => {
+  loadMorePokemon.current = async () => {
     try {
+      setLoading(true);
       const paginationOffset = pokemonList.length;
       const nextPokemon = await fetchEnrichedPokemonList(
         DEFAULT_LIMIT_BY_CALL,
         paginationOffset,
       );
       setPokemonList([...pokemonList, ...nextPokemon]);
+      setLoading(false);
     } catch (error) {
-      console.log('Error fetching paginated pokemon list');
+      console.log(`Error fetching paginated pokemon list ${error}`);
     }
   };
 
   useEffect(() => {
     (async () => {
       try {
-        // @TODO: indicate with a spinner that the list is loading
-        const initialPokemon = await fetchEnrichedPokemonList();
-        setPokemonList(initialPokemon);
+        await loadMorePokemon.current();
       } catch (error) {
-        console.log('Error fetching initial pokemon list');
+        console.log(`Error fetching initial pokemon list ${error}`);
       }
     })();
   }, []);
 
   return (
     <View style={styles.container}>
-      <PokeList list={pokemonList} loadMorePokemon={loadMorePokemon} />
+      {pokemonList.length === 0 && loading && (
+        <ActivityIndicator size={'large'} color={COLORS.softBlue} />
+      )}
+      {pokemonList.length > 0 && (
+        <PokeList
+          list={pokemonList}
+          loadMorePokemon={loadMorePokemon.current}
+          loading={loading}
+        />
+      )}
     </View>
   );
 };
@@ -47,7 +59,6 @@ interface IStyles {
 
 const styles = StyleSheet.create<IStyles>({
   container: {
-    flexDirection: 'column',
     marginHorizontal: 10,
   },
 });
