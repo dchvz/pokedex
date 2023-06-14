@@ -1,6 +1,13 @@
-import {View, StyleSheet, ViewStyle, ActivityIndicator} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ViewStyle,
+  ActivityIndicator,
+  TextStyle,
+} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import PokeList from '../components/PokeList';
+import BoldText from '../components/Text/BoldText';
 
 import {Pokemon} from '../types/pokemon';
 import {fetchEnrichedPokemonResource} from '../api/pokemonAPI';
@@ -42,30 +49,62 @@ const PokedexScreen = () => {
     })();
   }, []);
 
-  return (
-    <View style={styles.container}>
-      {pokemonList.length === 0 && loading && (
-        <ActivityIndicator size={'large'} color={COLORS.softBlue} />
-      )}
-      {pokemonList.length > 0 && (
+  const renderPokemon = () => {
+    if (pokemonList.length > 0) {
+      return (
         <PokeList
           list={pokemonList}
           loadMorePokemon={loadMorePokemon.current}
           loading={loading}
           endReached={endReached}
         />
-      )}
+      );
+    } else if (pokemonList.length === 0 && !loading) {
+      return (
+        // @TODO: Add a nicer UI for this case
+        <BoldText
+          text={
+            'No pokemon could be fetched at this time. Please try again later'
+          }
+          textStyle={styles.header}
+        />
+      );
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <BoldText text={'Pokedex'} textStyle={styles.header} />
+      <View style={styles.listContainer}>
+        {loading && pokemonList.length === 0 && (
+          <ActivityIndicator size={'large'} color={COLORS.softBlue} />
+        )}
+        {renderPokemon()}
+      </View>
     </View>
   );
 };
 
 interface IStyles {
   container: ViewStyle;
+  listContainer: ViewStyle;
+  header: TextStyle;
 }
 
 const styles = StyleSheet.create<IStyles>({
   container: {
     marginHorizontal: 10,
+    flex: 1,
+  },
+  listContainer: {
+    justifyContent: 'center',
+    flex: 1,
+  },
+  header: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 32,
+    marginVertical: 10,
   },
 });
 

@@ -1,7 +1,6 @@
-import {ActivityIndicator, FlatList, StyleSheet, TextStyle} from 'react-native';
+import {ActivityIndicator, FlatList} from 'react-native';
 import React from 'react';
 import PokeCard from './PokeCard';
-import BoldText from './Text/BoldText';
 import {Pokemon} from '../types/pokemon';
 import {COLORS} from '../constants/colors';
 
@@ -36,9 +35,6 @@ const PokeList = ({list, loadMorePokemon, loading, endReached}: Props) => {
     <FlatList
       data={list}
       onEndReached={handleEndReached}
-      ListHeaderComponent={
-        <BoldText text={'Pokedex'} textStyle={styles.header} />
-      }
       ListFooterComponent={renderLoadingFooter()}
       renderItem={({item}) => (
         <PokeCard
@@ -50,18 +46,5 @@ const PokeList = ({list, loadMorePokemon, loading, endReached}: Props) => {
     />
   );
 };
-
-interface IStyles {
-  header: TextStyle;
-}
-
-const styles = StyleSheet.create<IStyles>({
-  header: {
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 32,
-    marginVertical: 30,
-  },
-});
 
 export default PokeList;
