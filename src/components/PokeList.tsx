@@ -9,12 +9,13 @@ type Props = {
   list: Pokemon[];
   loadMorePokemon: () => Promise<void>;
   loading: boolean;
+  endReached: boolean;
 };
 
-const PokeList = ({list, loadMorePokemon, loading}: Props) => {
+const PokeList = ({list, loadMorePokemon, loading, endReached}: Props) => {
   const handleEndReached = (): void => {
     (async () => {
-      if (loading) {
+      if (loading || endReached) {
         return;
       }
       try {

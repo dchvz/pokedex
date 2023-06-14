@@ -3,27 +3,32 @@ import React, {useEffect, useRef, useState} from 'react';
 import PokeList from '../components/PokeList';
 
 import {Pokemon} from '../types/pokemon';
-import {fetchEnrichedPokemonList} from '../api/pokemonAPI';
+import {fetchEnrichedPokemonResource} from '../api/pokemonAPI';
 import {DEFAULT_LIMIT_BY_CALL} from '../constants/api';
 import {COLORS} from '../constants/colors';
 
 const PokedexScreen = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(false);
+  const [endReached, setEndReached] = useState(false);
   const loadMorePokemon = useRef(async () => {});
 
   loadMorePokemon.current = async () => {
     try {
       setLoading(true);
       const paginationOffset = pokemonList.length;
-      const nextPokemon = await fetchEnrichedPokemonList(
+      const {results: nextPokemon, next} = await fetchEnrichedPokemonResource(
         DEFAULT_LIMIT_BY_CALL,
         paginationOffset,
       );
+      if (!next) {
+        setEndReached(true);
+      }
       setPokemonList([...pokemonList, ...nextPokemon]);
-      setLoading(false);
     } catch (error) {
       console.log(`Error fetching paginated pokemon list ${error}`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -47,6 +52,7 @@ const PokedexScreen = () => {
           list={pokemonList}
           loadMorePokemon={loadMorePokemon.current}
           loading={loading}
+          endReached={endReached}
         />
       )}
     </View>
