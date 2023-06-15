@@ -1,6 +1,13 @@
 import React from 'react';
 
-import {View, StyleSheet, ViewStyle, ImageStyle, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ViewStyle,
+  ImageStyle,
+  Image,
+  TextStyle,
+} from 'react-native';
 import PokeType from './PokeType';
 import BoldText from './Text/BoldText';
 
@@ -12,20 +19,21 @@ import {PokemonType} from '../types/types';
 import Card from './Card';
 
 type Props = {
+  id: number;
   name: string;
   types: PokemonType[];
   imgUrl: string;
 };
 
-const PokeCard = ({name, types, imgUrl}: Props) => {
+const PokeCard = ({id, name, types, imgUrl}: Props) => {
   return (
     <Card
       viewStyle={[
         styles.container,
         {backgroundColor: getColorByType(types[0])},
       ]}>
-      <View style={styles.metadata}>
-        <BoldText text={upperCaseFirstLetter(name)} />
+      <View>
+        <BoldText text={upperCaseFirstLetter(name)} textStyle={styles.name} />
         <View style={styles.types}>
           {types.map(type => (
             <PokeType key={`${name}-${type}`} type={type} />
@@ -33,12 +41,15 @@ const PokeCard = ({name, types, imgUrl}: Props) => {
         </View>
       </View>
 
-      <Image
-        style={styles.image}
-        source={{
-          uri: imgUrl,
-        }}
-      />
+      <View style={styles.metadata}>
+        <BoldText text={`#${id}`} textStyle={styles.id} />
+        <Image
+          style={styles.image}
+          source={{
+            uri: imgUrl,
+          }}
+        />
+      </View>
     </Card>
   );
 };
@@ -48,6 +59,8 @@ interface IStyles {
   metadata: ViewStyle;
   image: ImageStyle;
   types: ViewStyle;
+  name: TextStyle;
+  id: TextStyle;
 }
 
 const styles = StyleSheet.create<IStyles>({
@@ -56,20 +69,28 @@ const styles = StyleSheet.create<IStyles>({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
+    paddingHorizontal: 10,
+    marginHorizontal: 5,
     marginVertical: 5,
-    height: 100,
+    height: 120,
   },
+  name: {
+    fontSize: 14,
+  },
+  id: {fontSize: 12, textAlign: 'right'},
   image: {
-    height: 100,
-    width: 100,
+    height: 70,
+    width: 70,
+    marginTop: 10,
   },
   types: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     marginVertical: 10,
   },
   metadata: {
     flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignContent: 'flex-end',
   },
 });
 
