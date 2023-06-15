@@ -18,3 +18,24 @@ export const COLORS = {
   casper: '#B7B7CE',
   softBlue: '#6390F0',
 };
+
+export const LIGHTER_COLORS = {
+  pistachioGreen: '#cfe33a',
+  tobaccoBrown: '#a78772',
+  purplishBlue: '#9a72fd',
+  brightGold: '#f9de6b',
+  dullPink: '#e2aac6',
+  cadmiumOrange: '#f2a064',
+  persianRead: '#de645f',
+  palePurple: '#c3b1f7',
+  mutedPurple: '#9d86b9',
+  appleGreen: '#a2d882',
+  gingerBrown: '#ebd293',
+  pearlAqua: '#b5e4e2',
+  greenSmoke: '#c2c1a2',
+  warmPurple: '#c86ec6',
+  warmPink: '#fb88ab',
+  brass: '#d3c26b',
+  casper: '#cdcddd',
+  softBlue: '#92b1f4',
+};
