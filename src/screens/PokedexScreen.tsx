@@ -103,8 +103,8 @@ const styles = StyleSheet.create<IStyles>({
   header: {
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 32,
-    marginVertical: 10,
+    fontSize: 28,
+    marginVertical: 30,
   },
 });
 

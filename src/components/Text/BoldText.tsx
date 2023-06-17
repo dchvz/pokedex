@@ -3,11 +3,18 @@ import React from 'react';
 
 type Props = {
   text: string;
-  textStyle?: TextStyle;
+  textStyle?: TextStyle[] | TextStyle;
 };
 
 const BoldText = ({text, textStyle}: Props) => {
-  return <Text style={[styles.text, textStyle]}>{text}</Text>;
+  return (
+    <Text
+      style={[styles.text, textStyle]}
+      numberOfLines={1}
+      adjustsFontSizeToFit>
+      {text}
+    </Text>
+  );
 };
 
 interface IStyles {

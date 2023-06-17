@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TextStyle, View, ViewStyle} from 'react-native';
+import {StyleSheet, Text, TextStyle, ViewStyle} from 'react-native';
 import {PokemonType} from '../types/types';
 import {getColorByType} from '../helpers/pokemonListHelper';
 import Card from './Card';
@@ -12,7 +12,7 @@ const PokeType = ({type}: Props) => {
   return (
     <Card
       viewStyle={[
-        {backgroundColor: getColorByType(type, true)},
+        {backgroundColor: getColorByType(type, 'light')},
         styles.container,
       ]}>
       <Text style={styles.type}>{type}</Text>
