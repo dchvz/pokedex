@@ -1,4 +1,4 @@
-import {COLORS, LIGHTER_COLORS} from './colors';
+import {COLORS, DARKER_COLORS, LIGHTER_COLORS} from './colors';
 
 export const enum POKEMON_TYPES {
   bug = 'bug',
@@ -61,4 +61,25 @@ export const LIGHT_COLOR_BY_TYPE = {
   rock: LIGHTER_COLORS.brass,
   steel: LIGHTER_COLORS.casper,
   water: LIGHTER_COLORS.softBlue,
+};
+
+export const DARK_COLOR_BY_TYPE = {
+  bug: DARKER_COLORS.pistachioGreen,
+  dark: DARKER_COLORS.tobaccoBrown,
+  dragon: DARKER_COLORS.purplishBlue,
+  electric: DARKER_COLORS.brightGold,
+  fairy: DARKER_COLORS.dullPink,
+  fire: DARKER_COLORS.cadmiumOrange,
+  fighting: DARKER_COLORS.persianRead,
+  flying: DARKER_COLORS.palePurple,
+  ghost: DARKER_COLORS.mutedPurple,
+  grass: DARKER_COLORS.appleGreen,
+  ground: DARKER_COLORS.gingerBrown,
+  ice: DARKER_COLORS.pearlAqua,
+  normal: DARKER_COLORS.greenSmoke,
+  poison: DARKER_COLORS.warmPurple,
+  psychic: DARKER_COLORS.warmPink,
+  rock: DARKER_COLORS.brass,
+  steel: DARKER_COLORS.casper,
+  water: DARKER_COLORS.softBlue,
 };
