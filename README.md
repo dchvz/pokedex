@@ -11,7 +11,7 @@
 
 ## :page_with_curl: About
 
-The Pokedex is an app which the user can view a list of Pokemons, search and view the details of a specific Pokemon. To get the Pokemons data it was used the [PokéAPI](https://pokeapi.co/).
+The Pokedex is a encyclopedia of all Pokemon in the Pokemon World. In order to get that information the [PokéAPI](https://pokeapi.co/) was used.
 
 ## :rocket: Getting started
 
