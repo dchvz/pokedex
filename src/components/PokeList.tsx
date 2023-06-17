@@ -41,9 +41,7 @@ const PokeList = ({list, loadMorePokemon, loading, endReached}: Props) => {
         <PokeCard
           id={item.id}
           name={item.name}
-          imgUrl={
-            item.sprites.other['official-artwork'].front_default as string
-          }
+          imgUrl={item.sprites.other['official-artwork'].front_default}
           types={item.types.map(type => type.type.name)}
         />
       )}

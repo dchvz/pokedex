@@ -38,10 +38,28 @@ type Sprites = {
   back_shiny: string | null;
   back_shiny_female: string | null;
   front_default: string | null;
-  front_female: string | null;
+  front_female: string;
   front_shiny: string | null;
-  front_shiny_female: string | null;
+  front_shiny_female: string;
+  other: OtherSprites;
   // @TODO add versions
+};
+
+type OtherSprites = {
+  dream_world: {
+    front_default: string;
+    front_female: string;
+  };
+  home: {
+    front_default: string;
+    front_female: string | null;
+    front_shiny: string;
+    front_shiny_female: string | null;
+  };
+  'official-artwork': {
+    front_default: string;
+    front_shiny: string;
+  };
 };
 
 type Move = {
