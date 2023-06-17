@@ -11,7 +11,10 @@ type Props = {
 const PokeType = ({type}: Props) => {
   return (
     <Card
-      viewStyle={[styles.container, {backgroundColor: getColorByType(type)}]}>
+      viewStyle={[
+        {backgroundColor: getColorByType(type, 'light')},
+        styles.container,
+      ]}>
       <Text style={styles.type}>{type}</Text>
     </Card>
   );
@@ -24,16 +27,15 @@ interface IStyles {
 
 const styles = StyleSheet.create<IStyles>({
   container: {
-    borderColor: 'white',
-    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 2,
-    marginHorizontal: 2,
+    marginVertical: 4,
+    padding: 2,
+    width: 60,
   },
   type: {
     color: 'white',
+    fontSize: 10,
     fontWeight: '500',
   },
 });

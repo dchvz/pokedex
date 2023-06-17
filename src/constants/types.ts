@@ -1,4 +1,4 @@
-import {COLORS} from './colors';
+import {COLORS, DARKER_COLORS, LIGHTER_COLORS} from './colors';
 
 export const enum POKEMON_TYPES {
   bug = 'bug',
@@ -40,4 +40,46 @@ export const COLOR_BY_TYPE = {
   rock: COLORS.brass,
   steel: COLORS.casper,
   water: COLORS.softBlue,
+};
+
+export const LIGHT_COLOR_BY_TYPE = {
+  bug: LIGHTER_COLORS.pistachioGreen,
+  dark: LIGHTER_COLORS.tobaccoBrown,
+  dragon: LIGHTER_COLORS.purplishBlue,
+  electric: LIGHTER_COLORS.brightGold,
+  fairy: LIGHTER_COLORS.dullPink,
+  fire: LIGHTER_COLORS.cadmiumOrange,
+  fighting: LIGHTER_COLORS.persianRead,
+  flying: LIGHTER_COLORS.palePurple,
+  ghost: LIGHTER_COLORS.mutedPurple,
+  grass: LIGHTER_COLORS.appleGreen,
+  ground: LIGHTER_COLORS.gingerBrown,
+  ice: LIGHTER_COLORS.pearlAqua,
+  normal: LIGHTER_COLORS.greenSmoke,
+  poison: LIGHTER_COLORS.warmPurple,
+  psychic: LIGHTER_COLORS.warmPink,
+  rock: LIGHTER_COLORS.brass,
+  steel: LIGHTER_COLORS.casper,
+  water: LIGHTER_COLORS.softBlue,
+};
+
+export const DARK_COLOR_BY_TYPE = {
+  bug: DARKER_COLORS.pistachioGreen,
+  dark: DARKER_COLORS.tobaccoBrown,
+  dragon: DARKER_COLORS.purplishBlue,
+  electric: DARKER_COLORS.brightGold,
+  fairy: DARKER_COLORS.dullPink,
+  fire: DARKER_COLORS.cadmiumOrange,
+  fighting: DARKER_COLORS.persianRead,
+  flying: DARKER_COLORS.palePurple,
+  ghost: DARKER_COLORS.mutedPurple,
+  grass: DARKER_COLORS.appleGreen,
+  ground: DARKER_COLORS.gingerBrown,
+  ice: DARKER_COLORS.pearlAqua,
+  normal: DARKER_COLORS.greenSmoke,
+  poison: DARKER_COLORS.warmPurple,
+  psychic: DARKER_COLORS.warmPink,
+  rock: DARKER_COLORS.brass,
+  steel: DARKER_COLORS.casper,
+  water: DARKER_COLORS.softBlue,
 };

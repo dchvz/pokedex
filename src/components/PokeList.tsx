@@ -34,12 +34,14 @@ const PokeList = ({list, loadMorePokemon, loading, endReached}: Props) => {
   return (
     <FlatList
       data={list}
+      numColumns={2}
       onEndReached={handleEndReached}
       ListFooterComponent={renderLoadingFooter()}
       renderItem={({item}) => (
         <PokeCard
+          id={item.id}
           name={item.name}
-          imgUrl={item.sprites.front_default as string}
+          imgUrl={item.sprites.other['official-artwork'].front_default}
           types={item.types.map(type => type.type.name)}
         />
       )}
