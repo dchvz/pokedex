@@ -75,12 +75,14 @@ const PokedexScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <BoldText text={'Pokedex'} textStyle={styles.header} />
-      <View style={styles.listContainer}>
-        {loading && pokemonList.length === 0 && (
-          <ActivityIndicator size={'large'} color={COLORS.softBlue} />
-        )}
-        {renderPokemon()}
+      <View style={styles.screen}>
+        <BoldText text={'Pokedex'} textStyle={styles.header} />
+        <View style={styles.listContainer}>
+          {loading && pokemonList.length === 0 && (
+            <ActivityIndicator size={'large'} color={COLORS.softBlue} />
+          )}
+          {renderPokemon()}
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -89,15 +91,16 @@ const PokedexScreen = () => {
 interface IStyles {
   container: ViewStyle;
   listContainer: ViewStyle;
+  screen: ViewStyle;
   header: TextStyle;
 }
 
 const styles = StyleSheet.create<IStyles>({
   container: {
-    marginHorizontal: 10,
     backgroundColor: 'white',
     flex: 1,
   },
+  screen: {marginHorizontal: 10, flex: 1},
   listContainer: {
     justifyContent: 'center',
     flex: 1,
