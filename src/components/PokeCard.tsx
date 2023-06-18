@@ -120,6 +120,7 @@ const styles = StyleSheet.create<IStyles>({
     flex: 1,
     overflow: 'hidden',
     justifyContent: 'center',
+    borderRadius: 10,
   },
 });
 
