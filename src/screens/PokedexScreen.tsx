@@ -4,6 +4,7 @@ import {
   ViewStyle,
   ActivityIndicator,
   TextStyle,
+  SafeAreaView,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import PokeList from '../components/PokeList';
@@ -73,7 +74,7 @@ const PokedexScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <BoldText text={'Pokedex'} textStyle={styles.header} />
       <View style={styles.listContainer}>
         {loading && pokemonList.length === 0 && (
@@ -81,7 +82,7 @@ const PokedexScreen = () => {
         )}
         {renderPokemon()}
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -94,6 +95,7 @@ interface IStyles {
 const styles = StyleSheet.create<IStyles>({
   container: {
     marginHorizontal: 10,
+    backgroundColor: 'white',
     flex: 1,
   },
   listContainer: {
