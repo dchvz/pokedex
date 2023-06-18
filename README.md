@@ -28,11 +28,11 @@ The Pokedex is a encyclopedia of all Pokemon in the Pokemon World. In order to g
   # Initiate the metro bundler:
   $ npm run start
 
-  # Then run on iOS
+  # Then run on iOS:
   $ npm run ios
 
-  # Or run on Android
-  npm run android
+  # Or run on Android:
+  $ npm run android
 ```
 
 # :thought_balloon: Inspiration
