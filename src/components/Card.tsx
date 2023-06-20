@@ -3,7 +3,7 @@ import React, {PropsWithChildren} from 'react';
 
 type Props = {
   viewStyle?: ViewStyle[];
-  onPress?: () => void;
+  onPress: () => void;
 };
 
 const Card = ({children, viewStyle, onPress}: PropsWithChildren<Props>) => {

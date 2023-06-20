@@ -18,6 +18,9 @@ import {
 } from '../helpers/pokemonListHelper';
 import {PokemonType} from '../types/types';
 import Card from './Card';
+import {useNavigation} from '@react-navigation/native';
+import {POKEMON_DETAILS_SCREEN} from '../constants/navigation';
+import {PokemonDetailsNavigationProp} from '../types/navigation';
 
 type Props = {
   id: number;
@@ -27,8 +30,14 @@ type Props = {
 };
 
 const PokeCard = ({id, name, types, imgUrl}: Props) => {
+  const navigation = useNavigation<PokemonDetailsNavigationProp>();
+  const goToDetailsScreen = () =>
+    navigation.navigate(POKEMON_DETAILS_SCREEN, {
+      pokemonId: id,
+    });
   return (
     <Card
+      onPress={goToDetailsScreen}
       viewStyle={[
         styles.container,
         {backgroundColor: getColorByType(types[0])},
