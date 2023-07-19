@@ -4,11 +4,20 @@ import React, {PropsWithChildren} from 'react';
 type Props = {
   viewStyle?: ViewStyle[];
   onPress: () => void;
+  testID: string;
 };
 
-const Card = ({children, viewStyle, onPress}: PropsWithChildren<Props>) => {
+const Card = ({
+  children,
+  viewStyle,
+  onPress,
+  testID,
+}: PropsWithChildren<Props>) => {
   return (
-    <Pressable onPress={onPress} style={[viewStyle, styles.container]}>
+    <Pressable
+      onPress={onPress}
+      style={[viewStyle, styles.container]}
+      testID={testID}>
       {children}
     </Pressable>
   );

@@ -41,7 +41,8 @@ const PokeCard = ({id, name, types, imgUrl}: Props) => {
       viewStyle={[
         styles.container,
         {backgroundColor: getColorByType(types[0])},
-      ]}>
+      ]}
+      testID={`${name}-card`}>
       <View style={styles.leftContainer}>
         <BoldText text={upperCaseFirstLetter(name)} textStyle={styles.name} />
         <View style={styles.types}>
