@@ -1,6 +1,5 @@
-require('jest-fetch-mock').enableMocks();
-// global.fetch = require('jest-fetch-mock');
 import {jest} from '@jest/globals';
+require('jest-fetch-mock').enableMocks();
 
 jest.mock('@react-navigation/native', () => {
   return {
