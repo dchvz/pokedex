@@ -11,6 +11,7 @@ type Props = {
 const PokeType = ({type}: Props) => {
   return (
     <Card
+      testID={`type-${type}`}
       viewStyle={[
         {backgroundColor: getColorByType(type, 'light')},
         styles.container,

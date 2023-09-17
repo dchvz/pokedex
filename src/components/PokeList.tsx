@@ -27,7 +27,11 @@ const PokeList = ({list, loadMorePokemon, loading, endReached}: Props) => {
 
   const renderLoadingFooter = () => {
     return loading ? (
-      <ActivityIndicator size={'small'} color={COLORS.softBlue} />
+      <ActivityIndicator
+        testID="pokemon-loading-footer"
+        size={'small'}
+        color={COLORS.softBlue}
+      />
     ) : null;
   };
 
@@ -37,6 +41,7 @@ const PokeList = ({list, loadMorePokemon, loading, endReached}: Props) => {
       numColumns={2}
       onEndReached={handleEndReached}
       ListFooterComponent={renderLoadingFooter()}
+      testID="pokemon-list"
       renderItem={({item}) => (
         <PokeCard
           id={item.id}

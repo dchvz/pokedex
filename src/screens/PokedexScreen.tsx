@@ -79,7 +79,11 @@ const PokedexScreen = () => {
         <BoldText text={'Pokedex'} textStyle={styles.header} />
         <View style={styles.listContainer}>
           {loading && pokemonList.length === 0 && (
-            <ActivityIndicator size={'large'} color={COLORS.softBlue} />
+            <ActivityIndicator
+              testID="pokemon-loading-animation"
+              size={'large'}
+              color={COLORS.softBlue}
+            />
           )}
           {renderPokemon()}
         </View>
