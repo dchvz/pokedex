@@ -2,7 +2,6 @@ import {
   View,
   StyleSheet,
   ViewStyle,
-  ActivityIndicator,
   TextStyle,
   SafeAreaView,
 } from 'react-native';
@@ -13,7 +12,7 @@ import BoldText from '../components/Text/BoldText';
 import {Pokemon} from '../types/pokemon';
 import {fetchEnrichedPokemonResource} from '../api/pokemonAPI';
 import {DEFAULT_LIMIT_BY_CALL} from '../constants/api';
-import {COLORS} from '../constants/colors';
+import NoPokemon from '../components/NoPokemon';
 
 const PokedexScreen = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
@@ -50,43 +49,35 @@ const PokedexScreen = () => {
     })();
   }, []);
 
+  const handleEndReached = async () => {
+    if (loading || endReached) {
+      return;
+    }
+    try {
+      await loadMorePokemon.current();
+    } catch (error) {
+      console.log(`Error adding elements at the end of the list ${error}`);
+    }
+  };
+
   const renderPokemon = () => {
     if (pokemonList.length > 0) {
       return (
         <PokeList
           list={pokemonList}
-          loadMorePokemon={loadMorePokemon.current}
+          onEndReached={handleEndReached}
           loading={loading}
-          endReached={endReached}
-        />
-      );
-    } else if (pokemonList.length === 0 && !loading) {
-      return (
-        // @TODO: Add a nicer UI for this case
-        <BoldText
-          text={
-            'No pokemon could be fetched at this time. Please try again later'
-          }
-          textStyle={styles.header}
         />
       );
     }
+    return <NoPokemon />;
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.screen}>
         <BoldText text={'Pokedex'} textStyle={styles.header} />
-        <View style={styles.listContainer}>
-          {loading && pokemonList.length === 0 && (
-            <ActivityIndicator
-              testID="pokemon-loading-animation"
-              size={'large'}
-              color={COLORS.softBlue}
-            />
-          )}
-          {renderPokemon()}
-        </View>
+        <View style={styles.listContainer}>{renderPokemon()}</View>
       </View>
     </SafeAreaView>
   );

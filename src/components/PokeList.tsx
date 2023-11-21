@@ -1,46 +1,26 @@
-import {ActivityIndicator, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import React from 'react';
-import PokeCard from './PokeCard';
+import PokeCard from './PokeCard/PokeCard';
 import {Pokemon} from '../types/pokemon';
-import {COLORS} from '../constants/colors';
+import LoadingAnimation from './LoadingAnimation';
 
 type Props = {
   list: Pokemon[];
-  loadMorePokemon: () => Promise<void>;
+  onEndReached: () => Promise<void>;
   loading: boolean;
-  endReached: boolean;
 };
 
-const PokeList = ({list, loadMorePokemon, loading, endReached}: Props) => {
-  const handleEndReached = (): void => {
-    (async () => {
-      if (loading || endReached) {
-        return;
-      }
-      try {
-        await loadMorePokemon();
-      } catch (error) {
-        console.log(`Error adding elements at the end of the list ${error}`);
-      }
-    })();
-  };
-
-  const renderLoadingFooter = () => {
-    return loading ? (
-      <ActivityIndicator
-        testID="pokemon-loading-footer"
-        size={'small'}
-        color={COLORS.softBlue}
-      />
-    ) : null;
-  };
+const PokeList = ({list, onEndReached, loading}: Props) => {
+  if (loading && list.length === 0) {
+    return <LoadingAnimation />;
+  }
 
   return (
     <FlatList
       data={list}
       numColumns={2}
-      onEndReached={handleEndReached}
-      ListFooterComponent={renderLoadingFooter()}
+      onEndReached={onEndReached}
+      ListFooterComponent={loading ? <LoadingAnimation /> : null}
       testID="pokemon-list"
       renderItem={({item}) => (
         <PokeCard
